@@ -1,0 +1,8 @@
+# Flask Framework
+Flask==2.0.2
+
+# Flask Packages
+Flask-Login==0.5.0
+Flask-SQLAlchemy==2.5.1
+Flask-RESTful==0.3.9
+Flask-Classful==0.14.2
