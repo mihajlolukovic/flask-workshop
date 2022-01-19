@@ -1,34 +1,34 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
 
 from home.services.calculator_service import CalculatorService
 
 app = Blueprint('fl', __name__)
 
-calculator_service = CalculatorService()
 
+class Calculator:
 
-@app.route('/sum/num/<int:first_number>/<int:second_number>', methods=['GET'])
-def summation(first_number, second_number):
-    summa = calculator_service.summation(first_number, second_number)
-    return jsonify(sum=summa)
+    calculation = CalculatorService()
 
+    # Sum two numbers
+    app.add_url_rule(
+        '/sum/num/<int:first_number>/<int:second_number>',
+        view_func=calculation.summation
+    )
 
-@app.route('/sub/num/<int:first_number>/<int:second_number>', methods=['GET'])
-def subtraction(first_number, second_number):
-    subtract = calculator_service.subtraction(first_number, second_number)
-    return jsonify(sum=subtract)
+    # Sub two numbers
+    app.add_url_rule(
+        '/sub/num/<int:first_number>/<int:second_number>',
+        view_func=calculation.subtraction
+    )
 
+    # Multiply two numbers
+    app.add_url_rule(
+        '/mul/num/<int:first_number>/<int:second_number>',
+        view_func=calculation.multiplication
+    )
 
-@app.route('/mul/num/<int:first_number>/<int:second_number>', methods=['GET'])
-def multiplication(first_number, second_number):
-    multiply = calculator_service.multiplication(first_number, second_number)
-    return jsonify(sum=multiply)
-
-
-@app.route('/div/num/<int:first_number>/<int:second_number>', methods=['GET'])
-def divide(first_number, second_number):
-    div = calculator_service.divide(first_number, second_number)
-    return jsonify(sum=div)
-
-
-
+    # Divide two numbers
+    app.add_url_rule(
+        '/div/num/<int:first_number>/<int:second_number>',
+        view_func=calculation.divide
+    )
