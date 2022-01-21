@@ -1,7 +1,11 @@
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import (Column, Integer, String)
 
 
-class House:
+db = SQLAlchemy()
+
+
+class House(db.Model):
     id = Column(Integer, primary_key=True)
     street = Column(String(100))
     number = Column(Integer)
